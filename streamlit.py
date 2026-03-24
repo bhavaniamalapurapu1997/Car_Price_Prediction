@@ -310,67 +310,33 @@ lr=LinearRegression(fit_intercept=True)
 model=lr.fit(x_train,y_train)
 y_pred=lr.predict(x_train)
 y_final_predict=lr.predict(x)
-print(y_final_predict)
+print(y_pred)
+
+print('The Accuracy  on the training dataset is: ', lr.score(x_train, y_train) )
+print('The Accuracy r2  on the training dataset prediction is: ', r2_score(y_train,y_pred) )   
+
+print("")
+
+print('The Accuracy  on the testing dataset is: ', lr.score(x_test, y_test) )
+
+print("")
+
+print('The RMSE  on the training dataset is: ',sqrt(mean_squared_error(y_train,y_pred)))
+print('The RMSE  on the testing dataset is: ',sqrt(mean_squared_error(y_test,lr.predict(x_test))))
+
+print("")
+
+print('The MAE  on the training dataset is: ',mean_absolute_error(y_train,y_pred))
+print('The MAE  on the testing dataset is: ',mean_absolute_error(y_test,lr.predict(x_test)))
 
 
-# In[53]:
+print("")
 
+print('Coefficients: ', lr.coef_ )
 
-accuracy=r2_score(y_train,y_pred)
-final_accuracy=r2_score(y,y_final_predict)
-print(accuracy,final_accuracy)
+print("")
 
-
-# In[54]:
-
-
-print(lr.score(x_train,y_train))
-
-
-# In[55]:
-
-
-print(lr.score(x_test,y_test))
-
-
-# In[57]:
-
-
-from math import sqrt
-print(sqrt(mean_squared_error(y_train,y_pred)))
-
-
-# In[59]:
-
-
-print(sqrt(mean_squared_error(y_test,lr.predict(x_test))))
-print(mean_absolute_error(y_train,y_pred))
-print(mean_absolute_error(y_test,lr.predict(x_test)))
-
-
-# In[60]:
-
-
-print("coeff",lr.coef_)
-print("intercept",lr.intercept_)
-
-
-# In[64]:
-
-
-#pickle file deployment
-pickle.dump(lr,open('linear_model.pkl','wb'))
-model=pickle.load(open('linear_model.pkl','rb'))
-print(model.predict(x_test))
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
+print('Intercept: ', lr.intercept_)
 
 
 
